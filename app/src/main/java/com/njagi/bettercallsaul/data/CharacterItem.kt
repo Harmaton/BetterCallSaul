@@ -3,6 +3,7 @@ package com.njagi.bettercallsaul.data
 
 import com.squareup.moshi.Json
 
+
 data class CharacterItem(
     @Json(name = "appearance")
     val appearance: List<Int>,

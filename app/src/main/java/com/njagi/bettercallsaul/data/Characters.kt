@@ -1,3 +1,3 @@
 package com.njagi.bettercallsaul.data
 
-data class Characters()
+data class Characters( val data : ArrayList<CharacterItem>)

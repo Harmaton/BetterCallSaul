@@ -1,11 +1,7 @@
 package com.njagi.bettercallsaul.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.njagi.bettercallsaul.data.Character
-import com.njagi.bettercallsaul.data.CharacterResponse
 import com.njagi.bettercallsaul.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -30,9 +26,8 @@ class CharacterViewModel @Inject constructor(private  val CharacterRepository: C
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val characterResponse = CharacterRepository.getAllCharacters()
-                _charactersState.value = CharacterState.Success(characterResponse)
-
+                val characters = CharacterRepository.getAllCharacters()
+                _charactersState.value = CharacterState.Success(characters)
             }catch (exception : HttpException){
                 _charactersState.value = CharacterState.Error("No Internet connection buddy")
             }catch (exception : IOException){

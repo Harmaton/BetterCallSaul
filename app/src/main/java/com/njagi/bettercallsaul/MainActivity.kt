@@ -56,13 +56,14 @@ fun TopAppBar() {
         IconButton(onClick = { /*TODO*/ }) {
             Icon(imageVector = Icons.Default.Search, contentDescription ="Search characters")
         }
+
     }
 }
 @Composable
 fun FetchData(characterViewModel: CharacterViewModel = viewModel()){
     Column {
         when(val state = characterViewModel.characterstate.collectAsState().value){
-            is CharacterState.Empty -> Text(text = "Data is Empty")
+            is CharacterState.Empty-> Text(text = "Data is Empty")
             is CharacterState.Loading -> Text(text = "Loading")
             is CharacterState.Success -> Text(text = "Successful")
             is CharacterState.Error -> Text(state.message)
@@ -77,5 +78,6 @@ fun FetchData(characterViewModel: CharacterViewModel = viewModel()){
 fun DefaultPreview() {
     BetterCallSaulTheme {
        TopAppBar()
+        FetchData()
     }
 }
